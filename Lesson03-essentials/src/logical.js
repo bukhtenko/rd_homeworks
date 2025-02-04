@@ -1,9 +1,9 @@
-let a = 2.6;
-let b = 25;
-let c = '25';
-let d = 'lorem ipsum';
-let e = true;
-let f = false;
+const a = 2.6;
+const b = 25;
+const c = '25';
+const d = 'lorem ipsum';
+const e = true;
+const f = false;
 
 console.log('Наш набір даних для порівняння:', a, b, c, d, e, f);
 console.log('Порівняємо два числа і маємо', a > b);

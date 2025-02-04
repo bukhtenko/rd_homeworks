@@ -1,4 +1,4 @@
-let car = 'I want Bugatti';
+const car = 'I want Bugatti';
 
 switch (car) {
     case 'I want Chery':

@@ -1,7 +1,7 @@
-let a = 20;
-let b = 143;
-let c = true;
-let d = false;
+const a = 20;
+const b = 143;
+const c = true;
+const d = false;
 
 console.log('Просте порівняння двох чисел');
 if (a > b) {
