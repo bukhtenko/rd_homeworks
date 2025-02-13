@@ -9,7 +9,7 @@ async function secretData() {
     const json = await response.json();
     console.log('Такі дані по планеті:', json);
 
-    //return json;
+    return json;
 }
 
 async function trueData() {
@@ -19,7 +19,11 @@ async function trueData() {
     const json = await response.json();
     console.log('Такі дані по планеті:', json);
 
-    //return json;
+    return json;
+}
+
+function generateError() {
+    throw new Error('Помилка для вкладеного try catch');
 }
 
 (async () => {
@@ -27,8 +31,12 @@ async function trueData() {
         await secretData();
         console.log('Спрацював try');
     } catch {
-        await trueData();
-        console.log('Спрацював catch');
+        try {
+            await trueData();
+            console.log('Спрацював внутрішній try');
+        } catch {
+            generateError();
+        }
     }
     console.log('Здається працює!');
     console.log('*****************');
@@ -40,12 +48,16 @@ async function trueData() {
         await fetch('https://swapi.dev/api/planets/3/?format=json');
         const responseOne = await fetch('https://swwwwapi.dev/api/planets/3/?format=json'); //урл некоректний
         const json = await responseOne.json();
-        console.log('Тут try відробив', json);
+        console.log('Тут try відробив в 2 варіанті', json);
     } catch {
-        await fetch('https://swapi.dev/api/planets/2/?format=json');
-        const responseTwo = await fetch('https://swapi.dev/api/planets/2/?format=json'); //урл правильний
-        const json = await responseTwo.json();
-        console.log('Тут catch відробив', json);
+        try {
+            await fetch('https://swapi.dev/api/planets/2/?format=json');
+            const responseTwo = await fetch('https://swwwwapi.dev/api/planets/2/?format=json'); //урл теж неправильний
+            const json = await responseTwo.json();
+            console.log('Тут внутрішній try відпрацював в 2 варіанті', json);
+        } catch {
+            generateError();
+        }
     }
     console.log('І це теж працює - 2 варіант))');
     console.log('*****************');
