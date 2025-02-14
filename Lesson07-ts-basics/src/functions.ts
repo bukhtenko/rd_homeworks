@@ -1,54 +1,54 @@
 console.log('Спробую задати всі необхідні типи');
-function createList(firstName: string, lastName: string, salary: number): void {
+function createNewList(firstName: string, lastName: string, salary: number): void {
     console.log(firstName, lastName, salary);
 }
 
-createList('Bob', 'Johnson', 10560);
+createNewList('Bob', 'Johnson', 10560);
 console.log('*****************');
 
 console.log('Створюю ще одну функцію і передаю їй масив чисел');
-function arrayWithNumbers(someNumber: number[]): void {
+function arrayWithNumber(someNumber: number[]): void {
     console.log(someNumber);
 }
-const arrayForFunc: number[] = [182, 5, 24];
-arrayWithNumbers(arrayForFunc);
+const arrayForFuncNew: number[] = [182, 5, 24];
+arrayWithNumber(arrayForFuncNew);
 console.log('*****************');
 
 console.log('Створюю масив, потім функцію, в якій знаходжу суму елементів масиву');
-const arr: number[] = [22, 41, 3, 19, 48, 32, 401, 0];
-console.log('Маємо такий масив', arr);
+const arrNew: number[] = [22, 41, 3, 19, 48, 32, 401, 0];
+console.log('Маємо такий масив', arrNew);
 
-function sumOfArray(arr: number[]): void {
+function sumOfArrayNew(arrNew: number[]): void {
     //зараз тут вказує що тип вже зазначено раніше, якщо ж прибрати - пише що тип неявно any
     let sum = 0;
-    for (const i of arr) {
+    for (const i of arrNew) {
         sum += i;
     }
     console.log('Сума елементів нашого масиву складає', sum);
     console.log('*****************');
 }
 
-sumOfArray(arr);
+sumOfArrayNew(arrNew);
 
-const arrayOfStrings: string[] = ['Hello!', 'Sirius', 'robot dreams', 'Git', '145'];
-const arrayOfNumbers: number[] = [852, 22, 15, 8, 97, 110];
+const arrayOfStringsNew: string[] = ['Hello!', 'Sirius', 'robot dreams', 'Git', '145'];
+const arrayOfNumbersNew: number[] = [852, 22, 15, 8, 97, 110];
 
-sumOfArray(arrayOfNumbers);
+sumOfArrayNew(arrayOfNumbersNew);
 
 console.log('Оскільки для стрінгових значень маємо на початку 0, то трохи змінив функцію');
-function sumOfArrayStrings(arrayOfStrings: string[]): void {
+function sumOfArrayString(arrayOfStringsNew: string[]): void {
     //зараз тут вказує що тип вже зазначено раніше, якщо ж прибрати - пише що тип неявно any
-    let sum = arrayOfStrings[0];
-    for (let i = 1; i < arrayOfStrings.length; i++) {
-        sum += arrayOfStrings[i];
+    let sum = arrayOfStringsNew[0];
+    for (let i = 1; i < arrayOfStringsNew.length; i++) {
+        sum += arrayOfStringsNew[i];
     }
     console.log('Сума елементів нашого стрінгового масиву складає', sum);
     console.log('*****************');
 }
-sumOfArrayStrings(arrayOfStrings);
+sumOfArrayString(arrayOfStringsNew);
 
 console.log('Спробував написати функціональний вираз');
-const addText = arrayOfStrings.map(function (text) {
+const addTextNew = arrayOfStringsNew.map(function (text) {
     return text + ' ' + text;
 });
-console.log(addText);
+console.log(addTextNew);
