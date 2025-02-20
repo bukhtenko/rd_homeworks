@@ -1,6 +1,7 @@
-import { StarWarsPerson, personData } from './interface';
+import { StarWarsPerson } from './interface';
+//import { personData } from './function-for-interfaces';
 
-export class ResultClass {
+export class PeopleFromStarWars {
     private _name;
 
     public get name(): string {
@@ -12,9 +13,6 @@ export class ResultClass {
     }
 
     public results: Partial<StarWarsPerson>[];
-    // protected count: number;
-    // protected next: string | null;
-    // protected previous: string | null;
 
     public constructor(name: string, users: StarWarsPerson[]) {
         this._name = name;
@@ -25,11 +23,3 @@ export class ResultClass {
         console.log(`May the force be with you ${this._name}`);
     }
 }
-
-(async () => {
-    const data = await personData();
-    console.log(data);
-    const data2 = new ResultClass('Luke', data.results);
-    data2.sayHello();
-    console.log('You can find his planet here', data2.results[0].homeworld);
-})();
