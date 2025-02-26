@@ -1,3 +1,4 @@
+// цей файл залишив в домашці для себе як зразок розширення інтерфейсу
 import { IPlane } from './iplane';
 
 export interface AirbusA380 extends IPlane {

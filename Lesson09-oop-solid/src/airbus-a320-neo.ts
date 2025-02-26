@@ -5,11 +5,11 @@ export class AirbusA320Neo extends AirbusA320 {
 
     public constructor(model: string, engineProducer: string) {
         super();
-        this.producer = 'Airbus';
-        this.model = model;
-        this.numberOfPassengers = 150;
-        this.range = 6400;
-        this.fuelConsumption = 105000;
+        // this.producer = 'Airbus';
+        // this.model = model;
+        // this.numberOfPassengers = 150;
+        // this.range = 6400;
+        // this.fuelConsumption = 105000;
         this.engineProducer = engineProducer;
     }
 
