@@ -15,10 +15,11 @@ class TestPlane implements IPlane {
 }
 
 describe('calculateFuelEfficiency', () => {
-    it('Функція має відпрацьовувати нормально', () => {
+    it('Функція не видає ексепшн', () => {
         const testPlane = new TestPlane();
-        calculateFuelEfficiency(testPlane);
+        expect(() => calculateFuelEfficiency(testPlane)).not.toThrow(); // приклад взятий із коментарів до домашки, синтаксис трохи виправив
     });
+
     it('Перевірка назви виробника', () => {
         const testPlane = new TestPlane();
         expect(testPlane.producer).toBe('Airbus'); // Додаткова перевірка назви виробника
