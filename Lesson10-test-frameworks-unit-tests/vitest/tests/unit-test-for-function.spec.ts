@@ -19,7 +19,9 @@ describe('calculateFuelEfficiency', () => {
         const testPlane = new TestPlane();
         expect(() => calculateFuelEfficiency(testPlane)).not.toThrow(); // приклад взятий із коментарів до домашки, синтаксис трохи виправив
     });
+});
 
+describe('calculateFuelEfficiency', () => {
     it('Перевірка назви виробника', () => {
         const testPlane = new TestPlane();
         expect(testPlane.producer).toBe('Airbus'); // Додаткова перевірка назви виробника
