@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "5de9a06f-32e1-4ad0-9880-6f3fe718b4dc",
+		"name": "Homework_12 Jokes API tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18571750",
+		"_collection_link": "https://speeding-trinity-173453.postman.co/workspace/jokes~7b1b278e-7590-4b2b-8d62-7e1d9f6bd52e/collection/18571750-5de9a06f-32e1-4ad0-9880-6f3fe718b4dc?action=share&source=collection_link&creator=18571750"
+	},
+	"item": [
+		{
+			"name": "Random joke",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Респонс не порожній\", function () {\r",
+							"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Перевірка структури JSON схеми респонса\", function () {\r",
+							"    schema = {\r",
+							"        \"type\":\"object\",\r",
+							"        \"properties\":{\r",
+							"            \"type\":{\"type\":\"string\"},\r",
+							"            \"setup\":{\"type\":\"string\"},\r",
+							"            \"punchline\":{\"type\":\"string\"},\r",
+							"            \"id\":{\"type\":\"number\"}\r",
+							"        },        \r",
+							"    };\r",
+							"    pm.expect(pm.response.json()).to.have.jsonSchema(schema); \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/random_joke",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"random_joke"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Joke with specific id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Id отриманого жарту має бути 5\", function () {\r",
+							"    pm.expect(response.id).to.be.equal(5);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/jokes/5",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"jokes",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Types of jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Перевірка JSON схеми респонса на те що це масив з текстовими даними\", function () {\r",
+							"    schema = {\r",
+							"        \"type\": \"array\",\r",
+							"        \"items\": { \"type\": \"string\" }\r",
+							"    };\r",
+							"    pm.expect(pm.response.json()).to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/types",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10 random programming jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Відповідь включає тип 'programming'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"programming\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Відповідь не має включати інші типи жартів\", function () {\r",
+							"    pm.expect(pm.response.text()).to.not.include(\"general\", \"knock-knock\", \"dad\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/jokes/programming/ten",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"jokes",
+						"programming",
+						"ten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Incorrect joke type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400 or 404\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400, 404]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/jokes/programmi/ten",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"jokes",
+						"programmi",
+						"ten"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get number of jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"response = pm.response.text();\r",
+							"\r",
+							"pm.test(\"Чи містить відповідь текст про помилку\", function() {\r",
+							"    pm.expect(response).to.include(\"The passed path exceeds the number of jokes\");\r",
+							"});\r",
+							"\r",
+							"numberOfJokes = response.match(/number of jokes \\((\\d+)\\)/)[1];\r",
+							"\r",
+							"pm.collectionVariables.set(\"numberOfJokes\", numberOfJokes); // загальну кількість доступних жартів зберігаю в змінну"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/jokes/random/100000",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"jokes",
+						"random",
+						"100000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Random number of jokes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"numberOfJokes = pm.collectionVariables.get(\"numberOfJokes\");\r",
+							"\r",
+							"response = pm.response.json();\r",
+							"\r",
+							"numberOfObjects = response.length;\r",
+							"\r",
+							"pm.test(\"Кількість жартів співпадає із тією кількістю, яка була запитана\", function () {\r",
+							"    randomNumber = pm.variables.get(\"randomNumber\");\r",
+							"    pm.expect(numberOfObjects).to.be.equal(randomNumber);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"numberOfJokes = pm.collectionVariables.get(\"numberOfJokes\");\r",
+							"\r",
+							"pm.variables.set(\"randomNumber\", Math.floor(Math.random() * numberOfJokes) + 1);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/jokes/random/{{randomNumber}}",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"jokes",
+						"random",
+						"{{randomNumber}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Joke with incorrect id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"У респонсі є текст not found\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"not found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"numberOfJokes = pm.collectionVariables.get(\"numberOfJokes\");\r",
+							"\r",
+							"pm.variables.set(\"incorrectId\", numberOfJokes + 1);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}/jokes/{{incorrectId}}",
+					"host": [
+						"{{basic_url}}"
+					],
+					"path": [
+						"jokes",
+						"{{incorrectId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "basic_url",
+			"value": "http://localhost:3005",
+			"type": "string"
+		},
+		{
+			"key": "numberOfJokes",
+			"value": ""
+		}
+	]
+}
